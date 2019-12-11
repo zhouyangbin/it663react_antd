@@ -1,4 +1,7 @@
 {
   "presets": ["react"],
-  "plugins": ["syntax-dynamic-import"]
+  //"plugins": ["syntax-dynamic-import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+  "plugins": [
+    ["syntax-dynamic-import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css","style": "true" }] // `style: true` 会加载 less 文件
+  ]
 }

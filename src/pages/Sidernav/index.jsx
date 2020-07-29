@@ -1,7 +1,10 @@
-import React, { Component, } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import React, {} from 'react';
+import { Layout, Menu, Icon } from 'antd';
 import './index.less';
-const { Header, Content, Footer, Sider } = Layout;
+
+import axios from 'axios';
+
+const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 class Sidernav extends React.Component {
@@ -12,7 +15,30 @@ class Sidernav extends React.Component {
 
   };
   componentDidMount(){
-    console.log(123)
+    // let data ={
+    //     client_id: 'bss-client',
+    //     grant_type: 'password',
+    //     username: 'cms',
+    //     password: 'admin'
+    // }
+    axios({
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'get',
+      changeOrigin:true,
+      url: '/auth/admin/master/console/config',
+      // data: data
+      }).then(res => {
+        console.log(res)
+      },error => {
+        if(error.response){
+            // reject(error.response.data)
+        }else{
+            // reject(error)
+        }
+      });
   };
   componentWillUnmount (){};
 
@@ -23,11 +49,11 @@ class Sidernav extends React.Component {
           <Menu className="sider_nav_menu" theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item className="sider_nav_menu_item" key="12">
               <Icon type="desktop" />
-              <span><a href="/">index</a></span>
+              <span href="/">index</span>
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
-              <span><a href="#/production">production</a></span>
+              <span href="#/production">production</span>
             </Menu.Item>
             <SubMenu
               key="sub1"
